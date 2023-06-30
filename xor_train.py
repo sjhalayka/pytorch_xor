@@ -78,19 +78,19 @@ else:
 	optimizer = torch.optim.Adam(net.parameters(), lr=0.0005)
 	loss_func = torch.nn.MSELoss()
 
+	# 4 input cases, each having two inputs
+	batch = torch.zeros(4, 2, dtype=torch.float32)
+
+	batch[0][0] = 0;
+	batch[0][1] = 0;
+	batch[1][0] = 0;
+	batch[1][1] = 1;
+	batch[2][0] = 1;
+	batch[2][1] = 0;
+	batch[3][0] = 1;
+	batch[3][1] = 1;
+
 	for epoch in range(num_epochs):
-
-		# 4 input cases, each having two inputs
-		batch = torch.zeros(4, 2, dtype=torch.float32)
-
-		batch[0][0] = 0;
-		batch[0][1] = 0;
-		batch[1][0] = 0;
-		batch[1][1] = 1;
-		batch[2][0] = 1;
-		batch[2][1] = 0;
-		batch[3][0] = 1;
-		batch[3][1] = 1;
 
 		gt = ground_truth(batch.numpy())
 		x = Variable(batch)
